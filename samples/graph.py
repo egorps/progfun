@@ -9,7 +9,7 @@ class Vertex(object):
         self.neighbors = []
 
     def add_neighbor(self, vertex, cost=1):
-        self.neighbors.append((vertex, cost))
+        self.neighbors.append(vertex)
 
     def get_neighbors(self):
         return self.neighbors
@@ -36,7 +36,7 @@ class Graph(object):
                 n_ix = random.randint(0, num_vertices -1)
                 neighbor = vertices[n_ix]
                 if neighbor.key != v.key and \
-                    neighbor.key not in map(lambda x: x[0].key, v.get_neighbors()):
+                    neighbor.key not in map(lambda x: x.key, v.get_neighbors()):
                     v.add_neighbor(vertices[n_ix])
                     neighbor.add_neighbor(v)
 
@@ -53,5 +53,5 @@ if __name__ == "__main__":
     for v in g.vertices:
         print v, "neighbors:"
         for n in v.get_neighbors():
-            print n[0]
+            print n
         print
